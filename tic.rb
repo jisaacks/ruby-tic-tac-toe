@@ -156,7 +156,7 @@ class Tic
         wrong_input
       end
     else
-      wrong_input unless input == 'exit'
+      wrong_input unless input == :exit
     end
   end
   
