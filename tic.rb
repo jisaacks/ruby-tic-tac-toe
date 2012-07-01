@@ -29,7 +29,7 @@ class Tic
     @cpu_name = "Ruby"
     put_line
     puts "\n  RUBY TIC TAC TOE"
-    puts "\n What is your name?"
+    print "\n What is your name? "
     STDOUT.flush
     @user_name = gets.chomp
     put_bar
@@ -133,7 +133,7 @@ class Tic
     put_line
     puts "\n  RUBY TIC TAC TOE"
     draw_game
-    puts "\n #{@user_name}, please make a move or type 'exit' to quit"
+    print "\n #{@user_name}, please make a move or type 'exit' to quit: "
     STDOUT.flush
     input = gets.chomp.downcase.to_sym
     put_bar
