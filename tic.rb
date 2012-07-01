@@ -4,23 +4,23 @@ class Tic
   def initialize
     #the tic tac toe slots
     @places = {
-      "a1"=>" ","a2"=>" ","a3"=>" ",
-      "b1"=>" ","b2"=>" ","b3"=>" ",
-      "c1"=>" ","c2"=>" ","c3"=>" "
+      :a1=>" ",:a2=>" ",:a3=>" ",
+      :b1=>" ",:b2=>" ",:b3=>" ",
+      :c1=>" ",:c2=>" ",:c3=>" "
     }
     
     #map of all places that are possible wins
     @columns = [      
-      ['a1','a2','a3'],
-      ['b1','b2','b3'],
-      ['c1','c2','c3'],
+      [:a1,:a2,:a3],
+      [:b1,:b2,:b3],
+      [:c1,:c2,:c3],
       
-      ['a1','b1','c1'],
-      ['a2','b2','c2'],
-      ['a3','b3','c3'],
+      [:a1,:b1,:c1],
+      [:a2,:b2,:c2],
+      [:a3,:b3,:c3],
       
-      ['a1','b2','c3'],
-      ['c1','b2','a3']
+      [:a1,:b2,:c3],
+      [:c1,:b2,:a3]
     ]
     
     @cpu = rand() > 0.5 ? 'X' : 'O'
@@ -57,11 +57,11 @@ class Tic
     puts ""
     puts "   a b c"
     puts ""
-    puts " 1 #{@places["a1"]}|#{@places["b1"]}|#{@places["c1"]}"
+    puts " 1 #{@places[:a1]}|#{@places[:b1]}|#{@places[:c1]}"
     puts "   -----"
-    puts " 2 #{@places["a2"]}|#{@places["b2"]}|#{@places["c2"]}"
+    puts " 2 #{@places[:a2]}|#{@places[:b2]}|#{@places[:c2]}"
     puts "   -----"
-    puts " 3 #{@places["a3"]}|#{@places["b3"]}|#{@places["c3"]}"
+    puts " 3 #{@places[:a3]}|#{@places[:b3]}|#{@places[:c3]}"
   end
   
   def cpu_turn
@@ -135,10 +135,10 @@ class Tic
     draw_game
     puts "\n #{@user_name}, please make a move or type 'exit' to quit"
     STDOUT.flush
-    input = gets.chomp.downcase
+    input = gets.chomp.downcase.to_sym
     put_bar
     if input.length == 2
-      a = input.split("")
+      a = input.to_s.split("")
       if(['a','b','c'].include? a[0])
         if(['1','2','3'].include? a[1])
           if @places[input] == " "
