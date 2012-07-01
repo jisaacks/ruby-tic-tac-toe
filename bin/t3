@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'ruby-tic-tac-toe'
+Tic.new

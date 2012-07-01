@@ -1,8 +1,4 @@
-begin
-  require "color_text"
-rescue LoadError
-  raise "The gem 'color_text' is not installed. Please run 'gem install color_text'"
-end
+require "color_text"
 
 class Tic
 
@@ -224,5 +220,3 @@ class Tic
   end
   
 end
-
-Tic.new
