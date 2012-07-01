@@ -187,12 +187,18 @@ class Tic
       # see if cpu has won
       if times_in_column(column, @cpu) == 3
         put_line
+        draw_game
+        put_line
+        puts ""
         puts " Game Over -- #{@cpu_name} WINS!!!\n".blue
         game_over = true
       end
       # see if user has won
       if times_in_column(column, @user) == 3
         put_line
+        draw_game
+        put_line
+        puts ""
         puts " Game Over -- #{@user_name} WINS!!!\n".blue
         game_over = true
       end
@@ -207,6 +213,9 @@ class Tic
         end
       else
         put_line
+        draw_game
+        put_line
+        puts ""
         puts " Game Over -- DRAW!\n".blue
       end
     end
