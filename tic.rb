@@ -173,11 +173,7 @@ class Tic
   end
   
   def moves_left
-    slots = 0
-    @places.each do |k, v|
-      slots += 1 if v == " "
-    end
-    slots
+    @places.values.select{ |v| v == " " }.length
   end
   
   def check_game(next_turn)
