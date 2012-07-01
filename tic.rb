@@ -1,8 +1,10 @@
-require_relative 'color_text.rb'
+begin
+  require "color_text"
+rescue LoadError
+  raise "The gem 'color_text' is not installed. Please run 'gem install color_text'"
+end
 
 class Tic
-
-  include ColorText
 
   def initialize
     #the tic tac toe slots
