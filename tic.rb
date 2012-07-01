@@ -1,5 +1,8 @@
+require_relative 'color_text.rb'
 
 class Tic
+
+  include ColorText
 
   def initialize
     #the tic tac toe slots
@@ -28,8 +31,8 @@ class Tic
     
     @cpu_name = "Ruby"
     put_line
-    puts "\n  RUBY TIC TAC TOE"
-    print "\n What is your name? "
+    puts "\n  RUBY TIC TAC TOE".purple
+    print "\n What is your name? ".neon
     STDOUT.flush
     @user_name = gets.chomp
     put_bar
@@ -42,33 +45,33 @@ class Tic
   end
   
   def put_line
-    puts "-" * 80
+    puts ("-" * 80).gray
   end
   
   def put_bar
-    puts "#" * 80
-    puts "#" * 80
+    puts ("#" * 80).gray
+    puts ("#" * 80).gray
   end
   
   def draw_game
     puts ""
-    puts "#{@cpu_name}: #{@cpu}"
-    puts "#{@user_name}: #{@user}"
+    puts " #{@cpu_name}: #{@cpu.green}"
+    puts " #{@user_name}: #{@user.green}"
     puts ""
-    puts "   a b c"
+    puts "   a b c".gray
     puts ""
-    puts " 1 #{@places[:a1]}|#{@places[:b1]}|#{@places[:c1]}"
+    puts " 1 #{@places[:a1].green}|#{@places[:b1].green}|#{@places[:c1].green}".gray
     puts "   -----"
-    puts " 2 #{@places[:a2]}|#{@places[:b2]}|#{@places[:c2]}"
+    puts " 2 #{@places[:a2].green}|#{@places[:b2].green}|#{@places[:c2].green}".gray
     puts "   -----"
-    puts " 3 #{@places[:a3]}|#{@places[:b3]}|#{@places[:c3]}"
+    puts " 3 #{@places[:a3].green}|#{@places[:b3].green}|#{@places[:c3].green}".gray
   end
   
   def cpu_turn
     move = cpu_find_move
     @places[move] = @cpu
     put_line
-    puts "#{@cpu_name} marks #{move.upcase}"
+    puts " #{@cpu_name} marks #{move.to_s.upcase.green}".neon
     check_game(@user)
   end
   
@@ -131,9 +134,9 @@ class Tic
   
   def user_turn
     put_line
-    puts "\n  RUBY TIC TAC TOE"
+    puts "\n  RUBY TIC TAC TOE".purple
     draw_game
-    print "\n #{@user_name}, please make a move or type 'exit' to quit: "
+    print "\n #{@user_name}, please make a move or type 'exit' to quit: ".neon
     STDOUT.flush
     input = gets.chomp.downcase.to_sym
     put_bar
@@ -144,7 +147,7 @@ class Tic
           if @places[input] == " "
             @places[input] = @user
             put_line
-            puts "#{@user_name} marks #{input.upcase}"
+            puts " #{@user_name} marks #{input.to_s.upcase.green}".neon
             check_game(@cpu)
           else
             wrong_move
@@ -162,13 +165,13 @@ class Tic
   
   def wrong_input
     put_line
-    puts "Please specify a move with the format 'A1' , 'B3' , 'C2' etc."
+    puts " Please specify a move with the format 'A1' , 'B3' , 'C2' etc.".red
     user_turn
   end
   
   def wrong_move
     put_line
-    puts "You must choose an empty slot"
+    puts " You must choose an empty slot".red
     user_turn
   end
   
@@ -184,13 +187,13 @@ class Tic
       # see if cpu has won
       if times_in_column(column, @cpu) == 3
         put_line
-        puts "Game Over -- #{@cpu_name} WINS!!!"
+        puts " Game Over -- #{@cpu_name} WINS!!!\n".blue
         game_over = true
       end
       # see if user has won
       if times_in_column(column, @user) == 3
         put_line
-        puts "Game Over -- #{@user_name} WINS!!!"
+        puts " Game Over -- #{@user_name} WINS!!!\n".blue
         game_over = true
       end
     end
@@ -204,7 +207,7 @@ class Tic
         end
       else
         put_line
-        puts "Game Over -- DRAW!"
+        puts " Game Over -- DRAW!\n".blue
       end
     end
   end
