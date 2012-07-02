@@ -56,13 +56,13 @@ class Tic
     puts " #{@cpu_name}: #{@cpu.green}"
     puts " #{@user_name}: #{@user.green}"
     puts ""
-    puts "   a b c".gray
+    puts "     a   b   c".gray
     puts ""
-    puts " 1 #{@places[:a1].green}|#{@places[:b1].green}|#{@places[:c1].green}".gray
-    puts "   -----"
-    puts " 2 #{@places[:a2].green}|#{@places[:b2].green}|#{@places[:c2].green}".gray
-    puts "   -----"
-    puts " 3 #{@places[:a3].green}|#{@places[:b3].green}|#{@places[:c3].green}".gray
+    puts " 1   #{@places[:a1].green} | #{@places[:b1].green} | #{@places[:c1].green} ".gray
+    puts "    --- --- ---"
+    puts " 2   #{@places[:a2].green} | #{@places[:b2].green} | #{@places[:c2].green} ".gray
+    puts "    --- --- ---"
+    puts " 3   #{@places[:a3].green} | #{@places[:b3].green} | #{@places[:c3].green} ".gray
   end
   
   def cpu_turn
