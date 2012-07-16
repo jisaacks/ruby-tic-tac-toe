@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'ruby-tic-tac-toe'
-  s.version     = '0.0.4'
+  s.version     = '0.0.5'
   s.date        = Time.now.strftime("%Y-%m-%d")
   s.summary     = "Play tic tac toe in your terminal!"
   s.description = "Run 't3' in terminal after installing"
