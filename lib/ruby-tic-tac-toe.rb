@@ -27,6 +27,9 @@ class Tic
     STDOUT.flush
     @user_name = gets.chomp
     put_bar
+
+    @user_score = 0
+    @cpu_score = 0
     
     start_game(@user == 'X')
   end
@@ -45,6 +48,11 @@ class Tic
       cpu_turn
     end
   end
+
+  def restart_game(user_goes_first)
+    (1...20).each { |i| put_line }
+    start_game(user_goes_first)
+  end
   
   def put_line
     puts ("-" * 80).gray
@@ -56,6 +64,8 @@ class Tic
   end
   
   def draw_game
+    puts ""
+    puts " Wins: #{@cpu_name}:#{@cpu_score} #{@user_name}:#{@user_score}".gray
     puts ""
     puts " #{@cpu_name}: #{@cpu.green}"
     puts " #{@user_name}: #{@user.green}"
@@ -194,6 +204,7 @@ class Tic
         puts ""
         puts " Game Over -- #{@cpu_name} WINS!!!\n".blue
         game_over = true
+        @cpu_score += 1
         ask_to_play_again(false)
       end
       # see if user has won
@@ -204,6 +215,7 @@ class Tic
         puts ""
         puts " Game Over -- #{@user_name} WINS!!!\n".blue
         game_over = true
+        @user_score += 1
         ask_to_play_again(true)
       end
     end
@@ -231,8 +243,8 @@ class Tic
     STDOUT.flush
     response = gets.chomp.downcase
     case response
-    when "y"   then start_game(user_goes_first)
-    when "yes" then start_game(user_goes_first)
+    when "y"   then restart_game(user_goes_first)
+    when "yes" then restart_game(user_goes_first)
     when "n"   then #do nothing
     when "no"  then #do nothing
     else ask_to_play_again(user_goes_first)
