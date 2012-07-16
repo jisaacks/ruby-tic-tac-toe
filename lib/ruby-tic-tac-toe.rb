@@ -3,13 +3,6 @@ require "color_text"
 class Tic
 
   def initialize
-    #the tic tac toe slots
-    @places = {
-      a1:" ",a2:" ",a3:" ",
-      b1:" ",b2:" ",b3:" ",
-      c1:" ",c2:" ",c3:" "
-    }
-    
     #map of all places that are possible wins
     @columns = [      
       [:a1,:a2,:a3],
@@ -35,7 +28,18 @@ class Tic
     @user_name = gets.chomp
     put_bar
     
-    if(@user == 'X')
+    start_game(@user == 'X')
+  end
+
+  def start_game(user_goes_first)
+    #the tic tac toe slots
+    @places = {
+      a1:" ",a2:" ",a3:" ",
+      b1:" ",b2:" ",b3:" ",
+      c1:" ",c2:" ",c3:" "
+    }
+
+    if user_goes_first
       user_turn
     else
       cpu_turn
@@ -190,6 +194,7 @@ class Tic
         puts ""
         puts " Game Over -- #{@cpu_name} WINS!!!\n".blue
         game_over = true
+        ask_to_play_again(false)
       end
       # see if user has won
       if times_in_column(column, @user) == 3
@@ -199,6 +204,7 @@ class Tic
         puts ""
         puts " Game Over -- #{@user_name} WINS!!!\n".blue
         game_over = true
+        ask_to_play_again(true)
       end
     end
     
@@ -215,7 +221,21 @@ class Tic
         put_line
         puts ""
         puts " Game Over -- DRAW!\n".blue
+        ask_to_play_again(rand() > 0.5)
       end
+    end
+  end
+
+  def ask_to_play_again(user_goes_first)
+    print " Play again? (Yn): "
+    STDOUT.flush
+    response = gets.chomp.downcase
+    case response
+    when "y"   then start_game(user_goes_first)
+    when "yes" then start_game(user_goes_first)
+    when "n"   then #do nothing
+    when "no"  then #do nothing
+    else ask_to_play_again(user_goes_first)
     end
   end
   
